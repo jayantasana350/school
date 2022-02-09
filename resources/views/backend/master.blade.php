@@ -22,9 +22,9 @@
 <link rel="stylesheet" href="{{ asset('admin/css/separate/vendor/lobipanel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/lib/jqueryui/jquery-ui.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/separate/pages/widgets.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/css/lib/font-awesome/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/css/lib/bootstrap/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/css/main.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/lib/font-awesome/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/lib/bootstrap/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/main.css') }}">
 </head>
 <body class="with-side-menu control-panel control-panel-compact">
 
@@ -450,7 +450,12 @@
 	            </span>
 	            <ul>
 	                <li><a href="{{ route('GeneralSettings') }}"><span class="lbl">General Settings</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Madison Caribbean</span></a></li>
+	                <li><a href="{{ route('DormitoryList') }}"><span class="lbl">Dormitories</span></a></li>
+	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Promotions</span></a></li>
+	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Mail/SMS</span></a></li>
+	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Language</span></a></li>
+	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Administrator</span></a></li>
+	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Pools</span></a></li>
 	            </ul>
 	        </li>
             <li class="purple with-sub">
@@ -1031,6 +1036,7 @@
 			});
 		});
 	</script>
+@yield('footer_js')
 <script src="{{ asset('admin/js/app.js') }}"></script>
 </body>
 </html>

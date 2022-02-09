@@ -25,3 +25,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 // General Setting
 Route::get('/general-settings', 'GeneralSettingsController@GeneralSettings')->name('GeneralSettings');
 Route::post('/general-settings-store', 'GeneralSettingsController@GeneralSettingsStore')->name('GeneralSettingsStore');
+
+Route::get('/dormitory-list', 'DormitoryController@DormitoryList')->name('DormitoryList');
+Route::post('/dormitory-store', 'DormitoryController@DormitoryStore')->name('DormitoryStore');
+Route::post('/dormitory-update', 'DormitoryController@DormitoryUpdate')->name('DormitoryUpdate');
+Route::get('/dormitory-delete/{id}', 'DormitoryController@DormitoryDelete')->name('DormitoryDelete');
+Route::get('/dormitory-restore/{id}', 'DormitoryController@DormitoryRestore')->name('DormitoryRestore');
+Route::get('/dormitory-permanent-delete/{id}', 'DormitoryController@DormitoryPermanentDelte')->name('DormitoryPermanentDelte');
