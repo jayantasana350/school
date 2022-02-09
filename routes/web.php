@@ -24,3 +24,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // General Setting
 Route::get('/general-settings', 'GeneralSettingsController@GeneralSettings')->name('GeneralSettings');
+Route::post('/general-settings-store', 'GeneralSettingsController@GeneralSettingsStore')->name('GeneralSettingsStore');

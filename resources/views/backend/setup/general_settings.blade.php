@@ -20,7 +20,8 @@
 
         <div class="box-typical box-typical-padding">
 
-            <form>
+            <form action="{{ route('GeneralSettingsStore') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group row">
                     <label class="col-sm-2 form-control-label">Site Title</label>
                     <div class="col-sm-10">
@@ -73,10 +74,10 @@
                     <div class="col-sm-10">
                         <p class="form-control-static">
                             <label for="Subject">
-                                <input type="radio" name="attendence" id="Subject" name="attendencemodel" value="SUBJECT">
+                                <input type="radio" id="Subject" name="attendencemodel" value="SUBJECT">
                             Subject Based</label>
                             <label for="class">
-                                <input type="radio" name="attendence" id="class" name="attendencemodel" value="CLASS">
+                                <input type="radio" id="class" name="attendencemodel" value="CLASS">
                             Class Only</label>
                         </p>
                     </div>
@@ -126,6 +127,12 @@
                             <option>Media</option>
                             <option>Static Pages</option>
                         </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="exampleSelect2" class="col-sm-2 form-control-label">Site Logo</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="logo" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
