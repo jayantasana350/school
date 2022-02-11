@@ -3,15 +3,24 @@
 @section('content')
 <div class="page-content">
     <div class="container-fluid">
-        <header class="box-typical-header">
-            <div class="tbl-row">
-                <div class="tbl-cell tbl-cell-title">
-                    <h3>Bootstrap Table Examples</h3>
+        <header class="section-header">
+            <div class="tbl">
+                <div class="tbl-row">
+                    <div class="tbl-cell">
+                        <h2>Dashboard</h2>
+                        <div class="subtitle">Welcome to Ultimate Dashboard</div>
+                    </div>
+                    <div class="tbl-cell tbl-cell-action button">
+                        <a href="{{ route('StudentsAdd') }}" type="button" class="btn btn-inline"> <i class="fa fa-plus"></i> Add Student</a>
+                        <button type="button" class="btn btn-inline"> <i class="fa fa-cloud-upload"></i> Excel Upload</button>
+                        <button type="button" class="btn btn-inline"> <i class="fa fa-cloud-download"></i> Excel Download</button>
+                        <button type="button" class="btn btn-inline"> <i class="fa fa-file-pdf-o"></i> PDF Download</button>
+                    </div>
                 </div>
             </div>
         </header>
         <div class="float-right">
-            <button type="button" class="btn btn-inline btn-warning" data-toggle="modal" data-target="#Dormitory"><i class="font-icon fa fa-plus-square"></i> Add Dormitory</button>
+            {{-- <button type="button" class="btn btn-inline btn-warning" data-toggle="modal" data-target="#Dormitory"><i class="font-icon fa fa-plus-square"></i> Add Student</button>
             <!-- Button trigger modal -->
 
             <!-- Dormitory Add Modal -->
@@ -19,21 +28,66 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Dormitory Details</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Student Details</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form action="{{ route('DormitoryStore') }}" method="POST">
+                      <form action="{{ route('StudentStore') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Dormitory Name:</label>
-                          <input name="dormitory_name" type="text" class="form-control" id="recipient-name">
+                          <label for="student_name" class="col-form-label">Student Full Name:</label>
+                          <input name="name" type="text" class="form-control" id="student_name">
                         </div>
                         <div class="form-group">
-                          <label for="message-text" class="col-form-label">Description:</label>
-                          <textarea name="description" class="form-control" id="message-text"></textarea>
+                            <label for="student_name" class="col-form-label">Roll:</label>
+                            <input name="roll" type="number" class="form-control" id="student_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="student_name" class="col-form-label">User Name:</label>
+                            <input name="username" type="text" class="form-control" id="student_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="student_name" class="col-form-label">Email Address:</label>
+                            <input name="email" type="email" class="form-control" id="student_name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-label">Gender</label>
+                            <div class="col-sm-12">
+                                <p class="form-control-static">
+                                    <label for="Subject">
+                                        <input type="radio" id="Subject" name="gender">
+                                    Male</label>
+                                    <label for="class">
+                                        <input type="radio" id="class" name="gender">
+                                    Female</label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="student_name" class="col-form-label">Birthday:</label>
+                            <input name="birthday" type="date" class="form-control" id="student_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="student_name" class="col-form-label">Phone:</label>
+                            <input name="phone" type="number" class="form-control" id="student_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="student_name" class="col-form-label">Mobile:</label>
+                            <input name="mobile" type="number" class="form-control" id="student_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="student_name" class="col-form-label">Class:</label>
+                            <input name="class" type="text" class="form-control" id="student_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="student_name" class="col-form-label">Transportation:</label>
+                            <input name="transportation" type="text" class="form-control" id="student_name">
+                        </div>
+                        <div class="form-group">
+                          <label for="photo" class="col-form-label">Photo:</label>
+                          <input type="file" name="photo" id="photo" class="form-control">
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary">Add Dormitory</button>
@@ -42,7 +96,7 @@
                     </div>
                   </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <table id="table-xs" class="table table-bordered table-hover table-xs">
             <thead>
@@ -62,9 +116,9 @@
                     <td>{{ $dormitories->description ?? 'NA' }}</td>
                     <td>{{ $dormitories->created_at ?? 'NA' }}</td>
                     <td>
-                        <button type="button" title="Edit" class="btn btn-inline" data-toggle="modal" data-target="#DormitoryEdit{{ $dormitories->id }}"><i class="font-icon fa fa-pencil"></i></button>
+                        <button type="button" title="Edit" class="btn btn-inline" data-toggle="modal" data-target="#DormitoryEdit"><i class="font-icon fa fa-pencil"></i></button>
                         <!-- Dormitory Add Modal -->
-                        <div class="modal fade" id="DormitoryEdit{{ $dormitories->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="DormitoryEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -74,7 +128,7 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                <form action="{{ route('DormitoryUpdate') }}" method="POST">
+                                {{-- <form action="{{ route('DormitoryUpdate') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $dormitories->id }}">
                                     <div class="form-group">
@@ -88,40 +142,12 @@
                                     <div class="form-group text-center">
                                         <button type="submit" class="btn btn-primary">Update Dormitory</button>
                                     </div>
-                                </form>
+                                </form> --}}
                                 </div>
                             </div>
                             </div>
                         </div>
-                        <a href="{{ route('DormitoryDelete', $dormitories->id) }}" title="Delete" type="button" class="btn btn-inline btn-danger"><i class="font-icon fa fa-trash"></i></a>
-                    </td>
-                    {{ $dormitory->links() }}
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <hr>
-        <h2>Rrushed Dormitory</h2>
-        <table id="table-xs" class="table table-bordered table-hover table-xs">
-            <thead>
-            <tr>
-                <th>SL</th>
-                <th>Dormitory Name</th>
-                <th>Description</th>
-                <th>Date Created</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-                @foreach ($dormitory_trush as $key=>$trushed)
-                <tr>
-                    <td>{{ $loop->index + 1 }}</td>
-                    <td>{{ $trushed->dormitory_name }}</td>
-                    <td>{{ $trushed->description ?? 'NA' }}</td>
-                    <td>{{ $trushed->created_at ?? 'NA' }}</td>
-                    <td>
-                        <a href="{{ route('DormitoryRestore', $trushed->id) }}" title="Restore" type="button" class="btn btn-inline btn-warning"><i class="font-icon fa fa-share"></i></a>
-                        <a href="{{ route('DormitoryPermanentDelte', $trushed->id) }}" title="Permanent Delete" type="button" class="btn btn-inline btn-danger"><i class="font-icon fa fa-trash"></i></a>
+                        <a href="" title="Delete" type="button" class="btn btn-inline btn-danger"><i class="font-icon fa fa-trash"></i></a>
                     </td>
                 </tr>
                 @endforeach

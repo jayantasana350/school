@@ -32,3 +32,7 @@ Route::post('/dormitory-update', 'DormitoryController@DormitoryUpdate')->name('D
 Route::get('/dormitory-delete/{id}', 'DormitoryController@DormitoryDelete')->name('DormitoryDelete');
 Route::get('/dormitory-restore/{id}', 'DormitoryController@DormitoryRestore')->name('DormitoryRestore');
 Route::get('/dormitory-permanent-delete/{id}', 'DormitoryController@DormitoryPermanentDelte')->name('DormitoryPermanentDelte');
+
+Route::get('/student-list', 'StudentController@StudentsList')->name('StudentsList');
+Route::get('/student-add', 'StudentController@StudentsAdd')->name('StudentsAdd');
+Route::post('/student-store', 'StudentController@StudentStore')->name('StudentStore');

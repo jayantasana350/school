@@ -464,8 +464,7 @@
 	                <span class="lbl">Students</span>
 	            </span>
 	            <ul>
-	                <li><a href="theme-side-ebony-clay.html"><span class="lbl">Ebony Clay</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Madison Caribbean</span></a></li>
+	                <li><a href="{{ route('StudentsList') }}"><span class="lbl">Students</span></a></li>
 	            </ul>
 	        </li>
 
