@@ -26,7 +26,7 @@
                 <ul class="nav" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" href="#tabs-4-tab-1" role="tab" data-toggle="tab">
-                            Pending Activation
+                            Student Details
                         </a>
                     </li>
                     <li class="nav-item">
@@ -60,53 +60,57 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active show" id="tabs-4-tab-1">
                         <div class="container-fluid">
-                            <header class="section-header">
-                                <div class="tbl">
-                                    <div class="tbl-row">
-                                        <div class="tbl-cell">
-                                            <h3>Basic Inputs</h3>
-                                            <ol class="breadcrumb breadcrumb-simple">
-                                                <li><a href="#">StartUI</a></li>
-                                                <li><a href="#">Forms</a></li>
-                                                <li class="active">Basic Inputs</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                            </header>
 
                             <div class="box-typical box-typical-padding">
 
                                 <form>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 form-control-label">Text</label>
+                                        <label class="col-sm-2 form-control-label">First Name</label>
                                         <div class="col-sm-10">
-                                            <p class="form-control-static"><input type="text" class="form-control" id="inputPassword" placeholder="Text"></p>
+                                            <p class="form-control-static"><input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control" id="inputPassword" placeholder="Enter Full Name"></p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 form-control-label">Text Disabled</label>
+                                        <label class="col-sm-2 form-control-label">Middle Name</label>
                                         <div class="col-sm-10">
-                                            <p class="form-control-static"><input type="text" disabled class="form-control" id="inputPassword" placeholder="Text Disabled"></p>
+                                            <p class="form-control-static"><input type="text" name="middle_name"  value="{{ old('middle_name') }}"class="form-control" id="inputPassword" placeholder="Enter Full Name"></p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 form-control-label">Text Readonly</label>
+                                        <label class="col-sm-2 form-control-label">Last Name</label>
                                         <div class="col-sm-10">
-                                            <p class="form-control-static"><input type="text" readonly class="form-control" id="inputPassword" placeholder="Text Readonly"></p>
+                                            <p class="form-control-static"><input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control" id="inputPassword" placeholder="Enter Full Name"></p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputPassword" class="col-sm-2 form-control-label">Password</label>
+                                        <label class="col-sm-2 form-control-label">Date Of Birth</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                            <p class="form-control-static"><input type="date" name="date_of_birth" value="{{ old('date_of_birth') }}" class="form-control" id="inputPassword" placeholder="Enter Full Name"></p>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleSelect" class="col-sm-2 form-control-label">Select</label>
+                                        <label class="col-sm-2 form-control-label">Roll Number</label>
+                                        <div class="col-sm-10">
+                                            <p class="form-control-static"><input type="text" name="roll" value="{{ old('roll') }}" class="form-control" id="inputPassword" placeholder="Enter Roll Number"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label">Username</label>
+                                        <div class="col-sm-10">
+                                            <p class="form-control-static"><input type="text" name="username" value="{{ old('username') }}" class="form-control" id="inputPassword" placeholder="Enter Username"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label">Phone Number</label>
+                                        <div class="col-sm-10">
+                                            <p class="form-control-static"><input type="number" name="phone" value="{{ old('phone') }}" class="form-control" id="inputPassword" placeholder="Ex: 0123456789"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleSelect" class="col-sm-2 form-control-label">Nationality</label>
                                         <div class="col-sm-10">
                                             <select id="exampleSelect" class="form-control">
-                                                <option>1</option>
+                                                <option>Select Nationality</option>
                                                 <option>2</option>
                                                 <option>3</option>
                                                 <option>4</option>
@@ -114,21 +118,47 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleSelect2" class="col-sm-2 form-control-label">Multiple select</label>
+                                        <label for="exampleSelect" class="col-sm-2 form-control-label">State of Origin</label>
                                         <div class="col-sm-10">
-                                            <select multiple class="form-control" id="exampleSelect2">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                            <select id="exampleSelect" class="form-control">
+                                                <option>Select State</option>
+                                                <option>Dhaka</option>
+                                                <option>Chottogram</option>
+                                                <option>Noyakhali</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleSelect" class="col-sm-2 form-control-label">Textarea</label>
+                                        <label for="exampleSelect" class="col-sm-2 form-control-label">Local Govt</label>
                                         <div class="col-sm-10">
-                                            <textarea rows="4" class="form-control" placeholder="Textarea"></textarea>
+                                            <select id="exampleSelect" class="form-control">
+                                                <option>Select Local Govt.</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleSelect" class="col-sm-2 form-control-label">Gender</label>
+                                        <div class="col-sm-10">
+                                            <select id="exampleSelect" class="form-control">
+                                                <option>Select Gender</option>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label">Religion</label>
+                                        <div class="col-sm-10">
+                                            <p class="form-control-static"><input type="text" name="religion" value="{{ old('religion') }}" class="form-control" id="inputPassword" placeholder="Ex: 0123456789"></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12 text-center">
+                                            <button type="submit" class="btn btn-primary">Save Details</button>
                                         </div>
                                     </div>
                                 </form>
