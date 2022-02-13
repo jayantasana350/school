@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="{{ asset('admin/css/separate/pages/widgets.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/lib/font-awesome/font-awesome.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/lib/bootstrap/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/lib/tabs_css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/main.css') }}">
 </head>
 <body class="with-side-menu control-panel control-panel-compact">
@@ -1037,5 +1038,6 @@
 	</script>
 @yield('footer_js')
 <script src="{{ asset('admin/js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin/js/lib/tabs_js/main.js') }}"></script>
 </body>
 </html>
