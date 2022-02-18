@@ -451,12 +451,11 @@
 	            </span>
 	            <ul>
 	                <li><a href="{{ route('GeneralSettings') }}"><span class="lbl">General Settings</span></a></li>
+	                <li><a href="{{ route('Acadamic') }}"><span class="lbl">Academic</span></a></li>
 	                <li><a href="{{ route('DormitoryList') }}"><span class="lbl">Dormitories</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Promotions</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Mail/SMS</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Language</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Administrator</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Pools</span></a></li>
+	                <li><a href="{{ route('Class') }}"><span class="lbl">Class</span></a></li>
+	                <li><a href="{{ route('Subjects') }}"><span class="lbl">Subjects</span></a></li>
+	                <li><a href="{{ route('Fee') }}"><span class="lbl">Fees</span></a></li>
 	            </ul>
 	        </li>
             <li class="purple with-sub">
