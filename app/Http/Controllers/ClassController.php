@@ -12,16 +12,23 @@ class ClassController extends Controller
 
     function Class(){
         $classes = Classes::paginate();
+        $allclass = Classes::all();
         $subclass = SubClass::all();
         $trushed_class = Classes::onlyTrashed()->get();
+        $trushed_subclass = SubClass::onlyTrashed()->get();
         return view('backend.setup.class.class',[
             'classes' => $classes,
             'trushed_class' => $trushed_class,
             'subclass' => $subclass,
+            'allclass' => $allclass,
+            'trushed_subclass' => $trushed_subclass,
         ]);
     }
 
     function ClassStore(Request $req){
+        $req->validate([
+            'class_name' => ['required', 'unique:classes', 'min:3'],
+        ]);
         $class = New Classes;
         $class->class_name = $req->class_name;
         $class->slug = Str::slug($req->class_name);
@@ -53,6 +60,10 @@ class ClassController extends Controller
     }
 
     function SubClassStore(Request $req){
+        $req->validate([
+            'subclass_name' => ['required', 'unique:sub_classes', 'min:3'],
+        ]);
+
         $class = New SubClass;
         $class->subclass_name = $req->subclass_name;
         $class->slug = Str::slug($req->subclass_name);
@@ -61,5 +72,32 @@ class ClassController extends Controller
         return back()->with('SubClassStore', "SubClass Add Successfully");
     }
 
+    function SubClassUpdate(Request $req_subupdate){
+        $subclassupdate = SubClass::findOrFail($req_subupdate->id);
+        $subclassupdate->subclass_name = $req_subupdate->subclass_name;
+        $subclassupdate->slug = Str::slug($req_subupdate->subclass_name);
+        $subclassupdate->class_id = $subclassupdate->class_id;
+        $subclassupdate->save();
+        return back()->with('SubClassUpdate', "SubClass Update Successfully");
+    }
 
+    function SubClassDelete($id){
+        SubClass::findOrFail($id)->delete();
+        return back()->with('ClassDelete', "SubClass Delete Successfully");
+    }
+
+    function SubClassRestore($id){
+        SubClass::withTrashed()->findOrFail($id)->restore();
+        return back()->with('ClassRestore', "SubClass Restore Successfully");
+    }
+
+    function SubjectPermanentDelete($id){
+        SubClass::withTrashed()->findOrFail($id)->forceDelete();
+        return back()->with('ClassPermanentDelete', "SubClass Permanent Delete Successfully");
+    }
+
+    function ClassAjax($id){
+        $sub_class = SubClass::where('class_id', $id)->get();
+        return response()->json($sub_class);
+    }
 }

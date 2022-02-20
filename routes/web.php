@@ -48,6 +48,8 @@ Route::get('/class-delete/{slug}', 'ClassController@ClassDelete')->name('ClassDe
 Route::get('/class-restore/{slug}', 'ClassController@ClassRestore')->name('ClassRestore');
 Route::get('/class-permanent-delete/{slug}', 'ClassController@ClassPermanentDelete')->name('ClassPermanentDelete');
 
+Route::get('/class-ajax/{id}', 'ClassController@ClassAjax')->name('ClassAjax');
+
 Route::post('/subclass-store', 'ClassController@SubClassStore')->name('SubClassStore');
 Route::post('/subclass-update', 'ClassController@SubClassUpdate')->name('SubClassUpdate');
 Route::get('/subclass-delete/{slug}', 'ClassController@SubClassDelete')->name('SubClassDelete');
@@ -64,10 +66,14 @@ Route::get('/subjects--permanent-delete/{slug}', 'SubjectController@SubjectPerma
 Route::get('/fee', 'FeeController@Fee')->name('Fee');
 Route::post('/fee-store', 'FeeController@FeeStore')->name('FeeStore');
 Route::post('/fee-update', 'FeeController@FeeUpdate')->name('FeeUpdate');
-Route::get('/fee-delete/{slug}', 'FeeController@FeeDelete')->name('FeeDelete');
-Route::get('/fee-restore/{slug}', 'FeeController@FeeRestore')->name('FeeRestore');
-Route::get('/fee-permanent-delete/{slug}', 'FeeController@FeePermanentDelete')->name('FeePermanentDelete');
+Route::get('/fee-delete/{id}', 'FeeController@FeeDelete')->name('FeeDelete');
+Route::get('/fee-restore/{id}', 'FeeController@FeeRestore')->name('FeeRestore');
+Route::get('/fee-permanent-delete/{id}', 'FeeController@FeePermanentDelete')->name('FeePermanentDelete');
 
 Route::get('/student-list', 'StudentController@StudentsList')->name('StudentsList');
 Route::get('/student-add', 'StudentController@StudentsAdd')->name('StudentsAdd');
 Route::post('/student-store', 'StudentController@StudentStore')->name('StudentStore');
+Route::get('/student-edit/{id}', 'StudentController@StudentEdit')->name('StudentEdit');
+
+Route::get('/api/get-state-list/{id}', 'StudentController@GetState')->name('GetState');
+Route::get('/api/get-city-list/{id}', 'StudentController@GetCity')->name('GetCity');

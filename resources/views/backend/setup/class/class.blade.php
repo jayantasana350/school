@@ -30,10 +30,13 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="box-typical box-typical-padding">
+                                            @error('class_name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 form-control-label">Add Class</label>
                                                     <div class="col-sm-10">
-                                                        <p class="form-control-static"><input type="text" name="class_name" class="form-control" id="inputPassword" placeholder="Ex: First"></p>
+                                                        <p class="form-control-static"><input type="text" name="class_name" class="form-control @error('class_name') is-invalid @enderror" id="inputPassword" placeholder="Ex: First"></p>
                                                     </div>
                                                 </div>
                                         </div><!--.box-typical-->
@@ -66,11 +69,14 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="box-typical box-typical-padding">
+                                                @error('subclass_name')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                                     <div class="form-group row">
                                                         <label class="col-sm-3 form-control-label">Subject</label>
                                                         <div class="col-sm-9">
                                                             <p class="form-control-static">
-                                                                <input type="text" name="subclass_name" class="form-control" id="inputPassword" placeholder="Subject Title">
+                                                                <input type="text" name="subclass_name" class="form-control @error('subclass_name') is-invalid @enderror" id="inputPassword" placeholder="Subject Title">
                                                             </p>
                                                         </div>
                                                     </div>
@@ -218,12 +224,12 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $sub_class->subclass_name }}</td>
                                 <td>{{ $sub_class->slug ?? 'NA' }}</td>
-                                <td>{{ $sub_class->class_id ?? 'NA' }}</td>
+                                <td>{{ $sub_class->classname->class_name ?? 'NA' }}</td>
                                 <td>{{ $sub_class->created_at }}</td>
                                 <td>
-                                    <button type="button" title="Edit" class="btn btn-inline" data-toggle="modal" data-target="#AcademicEdit{{ $sub_class->id }}"><i class="font-icon fa fa-pencil"></i></button>
+                                    <button type="button" title="Edit" class="btn btn-inline" data-toggle="modal" data-target="#SubClassUpdate{{ $sub_class->id }}"><i class="font-icon fa fa-pencil"></i></button>
                                     <!-- Dormitory Add Modal -->
-                                    <div class="modal fade" id="AcademicEdit{{ $sub_class->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="SubClassUpdate{{ $sub_class->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -235,45 +241,46 @@
                                                 <form action="{{ route('SubClassUpdate') }}" method="POST">
                                                     @csrf
                                                     <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="box-typical box-typical-padding">
-                                                                <div class="form-group row">
-                                                                    <label class="col-sm-3 form-control-label">Subject</label>
-                                                                    <div class="col-sm-9">
-                                                                        <p class="form-control-static">
-                                                                            <input type="text" name="subclass_name" class="form-control" id="inputPassword" value="{{ $sub_class->subclass_name }}">
-                                                                        </p>
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="box-typical box-typical-padding">
+                                                                    <div class="form-group row">
+                                                                        <input type="hidden" name="id" value="{{ $sub_class->id }}">
+                                                                        <label class="col-sm-3 form-control-label">Subject</label>
+                                                                        <div class="col-sm-9">
+                                                                            <p class="form-control-static">
+                                                                                <input type="text" name="subclass_name" class="form-control" id="inputPassword" value="{{ $sub_class->subclass_name }}">
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <label class="col-sm-3 form-control-label">Class</label>
-                                                                    <div class="col-sm-9">
-                                                                        <p class="form-control-static">
-                                                                            <select name="class_id" id="class_id" class="form-control">
-                                                                                @foreach ($classes as $class)
-                                                                                    <option value="{{ $class->id }}">{{ $class->class_name }}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </p>
+                                                                    <div class="form-group row">
+                                                                        <label class="col-sm-3 form-control-label">Class</label>
+                                                                        <div class="col-sm-9">
+                                                                            <p class="form-control-static">
+                                                                                <select name="class_id" id="class_id" class="form-control">
+                                                                                    @foreach ($allclass as $all_class)
+                                                                                        <option @if($all_class->id == $sub_class->class_id) selected @endif value="{{ $all_class->id }}">{{ $all_class->class_name }}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                        </div><!--.box-typical-->
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                                    </div>
+                                                            </div><!--.box-typical-->
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        </div>
                                                 </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('ClassDelete', $sub_class->id) }}" title="Delete" type="button" class="btn btn-inline btn-danger"><i class="font-icon fa fa-trash"></i></a>
+                                    <a href="{{ route('SubClassDelete', $sub_class->id) }}" title="Delete" type="button" class="btn btn-inline btn-danger"><i class="font-icon fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -308,35 +315,33 @@
                     </table>
                 </div><!--.tab-pane-->
                 <div role="tabpanel" class="tab-pane fade" id="tabs-1-tab-4">
-                    {{-- <table id="table-xs" class="table table-bordered table-hover table-xs">
+                    <table id="table-xs" class="table table-bordered table-hover table-xs">
                         <thead>
                         <tr>
                             <th>SL</th>
-                            <th>Subject Name</th>
+                            <th>SubClass Name</th>
                             <th>Slug</th>
-                            <th>Abbrivation</th>
-                            <th>Class</th>
+                            <th>Class_name</th>
                             <th>Deleted_at</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($trushed_subject as $key=>$trushedsub)
+                            @foreach ($trushed_subclass as $key=>$trushedSubclass)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $trushedsub->subject }}</td>
-                                <td>{{ $trushedsub->slug ?? 'NA' }}</td>
-                                <td>{{ $trushedsub->abbrivation ?? 'NA' }}</td>
-                                <td>{{ $trushedsub->class_id ?? 'NA' }}</td>
-                                <td>{{ $trushedsub->deleted_at ?? 'NA' }}</td>
+                                <td>{{ $trushedSubclass->subclass_name }}</td>
+                                <td>{{ $trushedSubclass->slug ?? 'NA' }}</td>
+                                <td>{{ $trushedSubclass->classname->class_name }}</td>
+                                <td>{{ $trushedSubclass->deleted_at ?? 'NA' }}</td>
                                 <td>
-                                    <a href="{{ route('SubjectRestore', $trushedsub->id) }}" title="Restore" type="button" class="btn btn-inline btn-warning"><i class="font-icon fa fa-share"></i></a>
-                                    <a href="{{ route('SubjectPermanentDelete', $trushedsub->id) }}" title="Permanent Delete" type="button" class="btn btn-inline btn-danger"><i class="font-icon fa fa-trash"></i></a>
+                                    <a href="{{ route('SubClassRestore', $trushedSubclass->id) }}" title="Restore" type="button" class="btn btn-inline btn-warning"><i class="font-icon fa fa-share"></i></a>
+                                    <a href="{{ route('SubjectPermanentDelete', $trushedSubclass->id) }}" title="Permanent Delete" type="button" class="btn btn-inline btn-danger"><i class="font-icon fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
-                    </table> --}}
+                    </table>
                 </div><!--.tab-pane-->
             </div><!--.tab-content-->
         </section><!--.tabs-section-->

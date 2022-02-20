@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Full Name</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="name" class="form-control" placeholder="Full Name"/>
+                                    <input type="text" name="name" class="form-control" value="{{ $students->name }}"/>
                                     <i class="glyphicon glyphicon-user"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>

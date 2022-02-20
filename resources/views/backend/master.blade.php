@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="{{ asset('admin/css/separate/vendor/lobipanel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/lib/jqueryui/jquery-ui.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/separate/pages/widgets.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/separate/vendor/jquery-steps.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/lib/font-awesome/font-awesome.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/lib/bootstrap/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/css/lib/tabs_css/style.css') }}">
@@ -933,6 +934,8 @@
 	<script src="{{ asset('admin/js/plugins.js') }}"></script>
 
 	<script type="text/javascript" src="{{ asset('admin/js/lib/jqueryui/jquery-ui.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('admin/js/lib/jquery-validation/jquery.validate.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('admin/js/lib/jquery-steps/jquery.steps.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('admin/js/lib/lobipanel/lobipanel.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('admin/js/lib/match-height/jquery.matchHeight.min.js') }}"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -1032,6 +1035,69 @@
 				drawChart();
 				setTimeout(function(){
 				}, 1000);
+			});
+		});
+
+        $(function() {
+			$("#example-basic ").steps({
+				headerTag: "h3",
+				bodyTag: "section",
+				transitionEffect: "slideLeft",
+				autoFocus: true
+			});
+
+			var form = $("#example-form");
+			form.validate({
+				rules: {
+					agree: {
+						required: true
+					}
+				},
+				errorPlacement: function errorPlacement(error, element) { element.closest('.form-group').find('.form-control').after(error); },
+				highlight: function(element) {
+					$(element).closest('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element) {
+					$(element).closest('.form-group').removeClass('has-error');
+				}
+			});
+
+			form.children("div").steps({
+				headerTag: "h3",
+				bodyTag: "section",
+				transitionEffect: "slideLeft",
+				onStepChanging: function (event, currentIndex, newIndex)
+				{
+					form.validate().settings.ignore = ":disabled,:hidden";
+					return form.valid();
+				},
+				onFinishing: function (event, currentIndex)
+				{
+					form.validate().settings.ignore = ":disabled";
+					return form.valid();
+				},
+				onFinished: function (event, currentIndex)
+				{
+					alert("Submitted!");
+				}
+			});
+
+			$("#example-tabs").steps({
+				headerTag: "h3",
+				bodyTag: "section",
+				transitionEffect: "slideLeft",
+				enableFinishButton: false,
+				enablePagination: false,
+				enableAllSteps: true,
+				titleTemplate: "#title#",
+				cssClass: "tabcontrol"
+			});
+
+			$("#example-vertical").steps({
+				headerTag: "h3",
+				bodyTag: "section",
+				transitionEffect: "slideLeft",
+				stepsOrientation: "vertical"
 			});
 		});
 	</script>
