@@ -16,6 +16,7 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->string('dateofbirth');
             $table->string('country_id');
             $table->string('state_id');
@@ -26,7 +27,7 @@ class CreateStudentsTable extends Migration
             $table->string('admission_name');
             $table->string('section');
             $table->string('class_lavel');
-            $table->string('class_alphabet');
+            $table->string('registration');
             $table->string('admission_date');
             $table->string('father_name');
             $table->string('father_occupation');

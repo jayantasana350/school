@@ -465,7 +465,8 @@
 	                <span class="lbl">Students</span>
 	            </span>
 	            <ul>
-	                <li><a href="{{ route('StudentsList') }}"><span class="lbl">Students</span></a></li>
+	                <li><a href="{{ route('StudentsList') }}"><span class="lbl">All Students</span></a></li>
+	                <li><a href="{{ route('StudentsAdd') }}"><span class="lbl">Add a Students</span></a></li>
 	            </ul>
 	        </li>
 
@@ -475,8 +476,11 @@
 	                <span class="lbl">Staff</span>
 	            </span>
 	            <ul>
-	                <li><a href="theme-side-ebony-clay.html"><span class="lbl">Ebony Clay</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Madison Caribbean</span></a></li>
+	                <li><a href="theme-side-ebony-clay.html"><span class="lbl">All Staff</span></a></li>
+	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Create a Staff Account</span></a></li>
+	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Assign Role</span></a></li>
+	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Assign Teacher</span></a></li>
+	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Staff Finance</span></a></li>
 	            </ul>
 	        </li>
             <li class="green with-sub">

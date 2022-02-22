@@ -160,9 +160,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Class Alphabet</label>
+                                <label for="exampleInputPassword1">Registration</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="class_alphabet" class="form-control" id="exampleInputPassword1" placeholder="Class Alphabet">
+                                    <input type="number" name="registration" class="form-control" id="exampleInputPassword1" placeholder="Registration">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </div>
                             </div>

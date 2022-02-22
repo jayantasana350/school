@@ -76,7 +76,7 @@ class ClassController extends Controller
         $subclassupdate = SubClass::findOrFail($req_subupdate->id);
         $subclassupdate->subclass_name = $req_subupdate->subclass_name;
         $subclassupdate->slug = Str::slug($req_subupdate->subclass_name);
-        $subclassupdate->class_id = $subclassupdate->class_id;
+        $subclassupdate->class_id = $req_subupdate->class_id;
         $subclassupdate->save();
         return back()->with('SubClassUpdate', "SubClass Update Successfully");
     }

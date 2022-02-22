@@ -43,12 +43,13 @@
             }
             </style>
             <div class="box-typical-body">
-                <form id="example-form" class="form-wizard" action="{{ route('StudentStore') }}" method="POST" enctype="multipart/form-data">
+                <form id="example-form" class="form-wizard" action="{{ route('StudentUpdate') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div>
                         <h3>Basic Details</h3>
                         <section>
                             <div class="form-group">
+                                <input type="hidden" name="id" value="{{ $students->id }}">
                                 <label for="exampleInputEmail1">Full Name</label>
                                 <div class="form-control-wrapper form-control-icon-left">
                                     <input type="text" name="name" class="form-control" value="{{ $students->name }}"/>
@@ -60,7 +61,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Date of Birth</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="date" name="dateofbirth" class="form-control" placeholder="Full Name"/>
+                                    <input type="date" name="dateofbirth" class="form-control" value="{{ $students->dateofbirth }}"/>
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
@@ -68,9 +69,9 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nationality</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <select name="country_id" id="country_id" class="form-control" aria-describedby="emailHelp">
+                                    <select name="country_id" id="country_id" class="form-control">
                                         @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        <option @if ($country->id == $students->country_id) selected @endif value="{{ $country->id }}">{{ $country->name }}</option>
                                         @endforeach
                                     </select>
                                     <i class="glyphicon glyphicon-bookmark"></i>
@@ -80,10 +81,10 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">State of Origin</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <select name="state_id" id="state_id" class="form-control" aria-describedby="emailHelp">
-                                        {{-- @foreach ($states as $state)
-                                        <option value="{{ $state->id }}">{{ $state->name }}</option>
-                                        @endforeach --}}
+                                    <select name="state_id" id="state_id" class="form-control">
+                                        @foreach ($states as $state)
+                                        <option @if ($state->id == $students->state_id) selected @endif value="{{ $state->id }}">{{ $state->name }}</option>
+                                        @endforeach
                                     </select>
                                     <i class="glyphicon glyphicon-tags"></i>
                                 </div>
@@ -92,10 +93,10 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Local Govt.</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <select name="city_id" id="city_id" class="form-control" aria-describedby="emailHelp">
-                                        {{-- @foreach ($cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                        @endforeach --}}
+                                    <select name="city_id" id="city_id" class="form-control">
+                                        @foreach ($cities as $city)
+                                        <option @if ($city->id == $students->city_id) selected @endif value="{{ $city->id }}">{{ $city->name }}</option>
+                                        @endforeach
                                     </select>
                                     <i class="glyphicon glyphicon-tag"></i>
                                 </div>
@@ -104,10 +105,10 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Gender</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <select name="gender" id="exampleInputEmail1" class="form-control" aria-describedby="emailHelp">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Others">Others</option>
+                                    <select name="gender" id="exampleInputEmail1" class="form-control">
+                                        <option @if ($students->gender == 'Male') selected @endif value="Male">Male</option>
+                                        <option @if ($students->gender == 'Female') selected @endif value="Female">Female</option>
+                                        <option @if ($students->gender == 'Others') selected @endif value="Others">Others</option>
                                     </select>
                                     <i class="glyphicon glyphicon-user"></i>
                                 </div>
@@ -116,14 +117,14 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Religion</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="religion" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Relagion">
+                                    <input type="text" name="religion" class="form-control" value="{{ $students->religion }}">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Student Photo</label>
-                                <input type="file" name="image" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="file" name="image" class="form-control">
                                 <small id="emailHelp" class="form-text text-muted"></small>
                             </div>
                         </section>
@@ -132,7 +133,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Admission Name</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="admission_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Admission Name">
+                                    <input type="text" name="admission_name" class="form-control" value="{{ $students->admission_name }}">
                                     <i class="glyphicon glyphicon-equalizer"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
@@ -142,7 +143,7 @@
                                 <div class="form-control-wrapper form-control-icon-left">
                                     <select name="section" id="section" class="form-control" aria-describedby="emailHelp">
                                         @foreach ($classes as $class)
-                                            <option value="{{ $class->class_name }}">{{ $class->class_name }}</option>
+                                            <option @if ($class->class_name == $students->section) selected @endif value="{{ $class->class_name }}">{{ $class->class_name }}</option>
                                         @endforeach
                                     </select>
                                     <i class="glyphicon glyphicon-user"></i>
@@ -153,23 +154,23 @@
                                 <div class="form-control-wrapper form-control-icon-left">
                                     <select name="class_lavel" id="class_lavel" class="form-control" aria-describedby="emailHelp">
                                         @foreach ($subclasses as $subclass)
-                                        <option value="{{ $subclass->subclass_name }}">{{ $subclass->subclass_name }}</option>
+                                        <option @if ($subclass->subclass_name == $students->class_lavel) selected @endif value="{{ $subclass->subclass_name }}">{{ $subclass->subclass_name }}</option>
                                         @endforeach
                                     </select>
                                     <i class="glyphicon glyphicon-user"></i>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Class Alphabet</label>
+                                <label for="exampleInputPassword1">Registration</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="class_alphabet" class="form-control" id="exampleInputPassword1" placeholder="Class Alphabet">
+                                    <input type="text" name="registration" class="form-control" value="{{ $students->registration }}">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Admission Date</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="date" name="admission_date" class="form-control" id="exampleInputPassword1" placeholder="dd/mm/yy">
+                                    <input type="date" name="admission_date" class="form-control" value="{{ $students->admission_date }}">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </div>
                             </div>
@@ -179,7 +180,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Fathers Name</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="father_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fathers Name">
+                                    <input type="text" name="father_name" class="form-control" value="{{ $students->father_name }}">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
@@ -187,7 +188,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Fathers Occupation</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="father_occupation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fathers Occupation">
+                                    <input type="text" name="father_occupation" class="form-control" value="{{ $students->father_occupation }}">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
@@ -195,7 +196,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mothers Name</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="mother_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mothers Name">
+                                    <input type="text" name="mother_name" class="form-control" value="{{ $students->mother_name }}">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
@@ -203,7 +204,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mothers Occupation</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="mother_occupation" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Mothers Occupation">
+                                    <input type="text" name="mother_occupation" class="form-control" value="{{ $students->mother_occupation }}">
                                     <i class="glyphicon glyphicon-user"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
@@ -214,7 +215,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Student Phone Number</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="student_number" name="student_phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ex: 0123456789">
+                                    <input type="student_number" name="student_phone" class="form-control" value="{{ $students->student_phone }}">
                                     <i class="glyphicon glyphicon-phone-alt"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
@@ -222,7 +223,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Gardian Phone Number</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="gardian_number" name="gardian_phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ex: 0123456789">
+                                    <input type="gardian_number" name="gardian_phone" class="form-control" value="{{ $students->gardian_phone }}">
                                     <i class="glyphicon glyphicon-phone-alt"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
@@ -230,7 +231,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email Address</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@gmail.com">
+                                    <input type="email" name="email" class="form-control" value="{{ $students->email }}">
                                     <i class="glyphicon glyphicon-send"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>
@@ -238,7 +239,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Home Address</label>
                                 <div class="form-control-wrapper form-control-icon-left">
-                                    <input type="text" name="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Home Address">
+                                    <input type="text" name="address" class="form-control" value="{{ $students->address }}">
                                     <i class="glyphicon glyphicon-home"></i>
                                 </div>
                                 <small id="emailHelp" class="form-text text-muted"></small>

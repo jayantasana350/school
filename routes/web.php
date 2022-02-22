@@ -74,6 +74,10 @@ Route::get('/student-list', 'StudentController@StudentsList')->name('StudentsLis
 Route::get('/student-add', 'StudentController@StudentsAdd')->name('StudentsAdd');
 Route::post('/student-store', 'StudentController@StudentStore')->name('StudentStore');
 Route::get('/student-edit/{id}', 'StudentController@StudentEdit')->name('StudentEdit');
+Route::post('/student-update', 'StudentController@StudentUpdate')->name('StudentUpdate');
+Route::get('/student-delete/{id}', 'StudentController@StudentDelete')->name('StudentDelete');
+Route::get('/student-restore/{id}', 'StudentController@StudentRestore')->name('StudentRestore');
+Route::get('/student-permanent-delete/{id}', 'StudentController@StudentPermanentDelete')->name('StudentPermanentDelete');
 
 Route::get('/api/get-state-list/{id}', 'StudentController@GetState')->name('GetState');
 Route::get('/api/get-city-list/{id}', 'StudentController@GetCity')->name('GetCity');
